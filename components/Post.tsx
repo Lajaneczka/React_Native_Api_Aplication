@@ -5,7 +5,7 @@ import { ExactPost } from "./ExactPost";
 
 
 export const Post = ({ navigation }) => {
-    const [post, setPost] = useState(false);
+    const [post, setPost] = useState([]);
 
     useEffect(() => {
         fetch("https://jsonplaceholder.typicode.com/posts")
@@ -18,7 +18,7 @@ export const Post = ({ navigation }) => {
 
       console.log(post)
 
-      if (!post) {
+      if (post.length === 0) {
         return <Text>"Trwa ładowanie"</Text>;
       }
 
@@ -29,7 +29,13 @@ export const Post = ({ navigation }) => {
         title="go to comments"
         onPress={() => navigation.navigate("Comments")}
       />
-      <ExactPost data={(post.id)}/>
+      {post.map( el => {
+          return <ExactPost
+            key={el.id}
+            title={el.title}
+            body={el.body}
+          />
+      })}
    
     </View>
   );
