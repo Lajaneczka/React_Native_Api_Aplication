@@ -1,9 +1,13 @@
 import * as React from "react";
-import { StyleSheet, Text, View, FlatList, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-
-
 
 export const Comments = () => {
   const [comments, setComments] = useState([]);
@@ -24,20 +28,20 @@ export const Comments = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-            <FlatList
+      <FlatList
         data={comments}
         renderItem={({ item }) => (
           <>
-            <TouchableOpacity >
+            <TouchableOpacity>
               <View style={styles.item}>
-                  <View style={styles.title}>
-                <Text style={styles.textTitle}>{item.name}</Text>
+                <View style={styles.title}>
+                  <Text style={styles.textTitle}>{item.name}</Text>
                 </View>
                 <View style={styles.body}>
-                <Text style={styles.textBody}>{item.email}</Text>
+                  <Text style={styles.textBody}>{item.email}</Text>
                 </View>
                 <View style={styles.body}>
-                <Text style={styles.textBody}>{item.body}</Text>
+                  <Text style={styles.textBody}>{item.body}</Text>
                 </View>
               </View>
             </TouchableOpacity>
@@ -63,19 +67,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   title: {
-      padding: 5,
+    padding: 5,
   },
   body: {
-      padding: 10,
-
+    padding: 10,
   },
-   textTitle: {
-       textAlign: 'center',
-       fontSize: 20,
-       fontWeight: '600',
-   },
-   textBody: {
-    textAlign: 'center',
-    
-   }
+  textTitle: {
+    textAlign: "center",
+    fontSize: 20,
+    fontWeight: "600",
+  },
+  textBody: {
+    textAlign: "center",
+  },
 });

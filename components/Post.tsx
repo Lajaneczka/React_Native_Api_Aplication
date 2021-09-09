@@ -9,12 +9,11 @@ import {
   Touchable,
 } from "react-native";
 import { useEffect, useState } from "react";
-import { ExactPost } from "./ExactPost";
-
-
 
 export const Post = ({ navigation }) => {
   const [post, setPost] = useState([]);
+
+  const dots = ["..."];
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts")
@@ -45,25 +44,31 @@ export const Post = ({ navigation }) => {
     //       />
     //   })} */}
 
-      <FlatList
-        data={post}
-        renderItem={({ item }) => (
-          <>
-            <TouchableOpacity onPress={() => navigation.navigate("Comments")}>
-              <View style={styles.item}>
-                  <View style={styles.title}>
+    <FlatList
+      data={post}
+      renderItem={({ item }) => (
+        <>
+          <TouchableOpacity onPress={() => navigation.navigate("Comments")}>
+            <View style={styles.item}>
+              <View style={styles.title}>
                 <Text style={styles.textTitle}>{item.title}</Text>
-                </View>
-                <View style={styles.body}>
-                <Text style={styles.textBody}>{item.body.replaceAll("\\\n"," ").split(' ').slice(0,5).join(' ')}</Text>
-                </View>
               </View>
-            </TouchableOpacity>
-          </>
-        )}
-        keyExtractor={(item, index) => index}
-      />
-    
+              <View style={styles.body}>
+                <Text style={styles.textBody}>
+                  {item.body
+                    .replaceAll("\\\n", " ")
+                    .split(" ")
+                    .slice(0, 5)
+                    .join(" ")
+                    .concat(dots)}
+                </Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+        </>
+      )}
+      keyExtractor={(item, index) => index}
+    />
   );
 };
 
@@ -81,19 +86,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   title: {
-      padding: 5,
+    padding: 5,
   },
   body: {
-      padding: 10,
-
+    padding: 10,
   },
-   textTitle: {
-       textAlign: 'center',
-       fontSize: 20,
-       fontWeight: '600',
-   },
-   textBody: {
-    textAlign: 'center',
-    
-   }
+  textTitle: {
+    textAlign: "center",
+    fontSize: 20,
+    fontWeight: "600",
+  },
+  textBody: {
+    textAlign: "center",
+  },
 });
