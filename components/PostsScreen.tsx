@@ -3,17 +3,13 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
   FlatList,
   TouchableOpacity,
-  Touchable,
 } from "react-native";
 import { useEffect, useState } from "react";
 
-export const Post = ({ navigation }) => {
+export const PostsScreen = ({ navigation }) => {
   const [post, setPost] = useState([]);
-
-  const dots = ["..."];
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts")
@@ -24,43 +20,34 @@ export const Post = ({ navigation }) => {
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(post);
+  const textBodyAdded = (text) => {
+    return text
+      .replaceAll("\\\n", " ")
+      .split(" ")
+      .slice(0, 5)
+      .join(" ")
+      .concat("...");
+  };
 
   if (post.length === 0) {
     return <Text>"Trwa ładowanie"</Text>;
   }
 
   return (
-    // <View style={styles.container}>
-    //   <Button
-    //     title="go to comments"
-    //     onPress={() => navigation.navigate("Comments")}
-    //   />
-    //   {/* {post.map(el => {
-    //       return <ExactPost
-    //         key={el.id}
-    //         title={el.title}
-    //         body={el.body}
-    //       />
-    //   })} */}
-
     <FlatList
       data={post}
       renderItem={({ item }) => (
         <>
-          <TouchableOpacity onPress={() => navigation.navigate("Comments")}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Post Information")}
+          >
             <View style={styles.item}>
               <View style={styles.title}>
                 <Text style={styles.textTitle}>{item.title}</Text>
               </View>
               <View style={styles.body}>
-                <Text style={styles.textBody}>
-                  {item.body
-                    .replaceAll("\\\n", " ")
-                    .split(" ")
-                    .slice(0, 5)
-                    .join(" ")
-                    .concat(dots)}
+                <Text style={styles.textBody} >
+                  {textBodyAdded(item.body)}
                 </Text>
               </View>
             </View>

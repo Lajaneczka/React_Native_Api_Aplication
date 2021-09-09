@@ -9,7 +9,7 @@ import {
 import { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export const Comments = () => {
+export const PostScreen = () => {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export const Comments = () => {
       })
       .catch((err) => console.log(err));
   }, []);
-  console.log(comments);
+
 
   if (comments.length === 0) {
     return <Text>"Trwa ładowanie"</Text>;
