@@ -9,8 +9,9 @@ import {
 import { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export const PostScreen = () => {
+export const PostScreen = (props) => {
   const [comments, setComments] = useState([]);
+  const { id, title, body } = props.route.params.item;
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts/1/comments")
@@ -20,7 +21,6 @@ export const PostScreen = () => {
       })
       .catch((err) => console.log(err));
   }, []);
-
 
   if (comments.length === 0) {
     return <Text>"Trwa ładowanie"</Text>;
@@ -34,7 +34,13 @@ export const PostScreen = () => {
           <>
             <TouchableOpacity>
               <View style={styles.item}>
-                <View style={styles.title}>
+                <View>
+                  <Text style={styles.textTitle}>{title}</Text>
+                </View>
+                <View>
+                  <Text style={styles.textBody}>{body}</Text>
+                </View>
+                <View style={styles.nameItem}>
                   <Text style={styles.textTitle}>{item.name}</Text>
                 </View>
                 <View style={styles.body}>
@@ -66,7 +72,7 @@ const styles = StyleSheet.create({
     borderBottomColor: "#afeeee",
     justifyContent: "center",
   },
-  title: {
+  nameItem: {
     padding: 5,
   },
   body: {

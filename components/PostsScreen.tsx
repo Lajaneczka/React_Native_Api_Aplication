@@ -5,6 +5,7 @@ import {
   View,
   FlatList,
   TouchableOpacity,
+  SafeAreaView,
 } from "react-native";
 import { useEffect, useState } from "react";
 
@@ -34,28 +35,30 @@ export const PostsScreen = ({ navigation }) => {
   }
 
   return (
-    <FlatList
-      data={post}
-      renderItem={({ item }) => (
-        <>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("Post Information")}
-          >
-            <View style={styles.item}>
-              <View style={styles.title}>
-                <Text style={styles.textTitle}>{item.title}</Text>
+    <SafeAreaView>
+      <FlatList
+        data={post}
+        renderItem={({ item }) => (
+          <>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Post Information", { item })}
+            >
+              <View style={styles.item}>
+                <View style={styles.title}> 
+                  <Text style={styles.textTitle}>{item.title}</Text>
+                </View>
+                <View style={styles.body}>
+                  <Text style={styles.textBody}>
+                    {textBodyAdded(item.body)}
+                  </Text>
+                </View>
               </View>
-              <View style={styles.body}>
-                <Text style={styles.textBody} >
-                  {textBodyAdded(item.body)}
-                </Text>
-              </View>
-            </View>
-          </TouchableOpacity>
-        </>
-      )}
-      keyExtractor={(item, index) => index}
-    />
+            </TouchableOpacity>
+          </>
+        )}
+        keyExtractor={(item, index) => index}
+      />
+    </SafeAreaView>
   );
 };
 
