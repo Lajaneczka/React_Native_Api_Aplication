@@ -1,7 +1,7 @@
 import * as React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { PostsScreen } from '../components/PostsScreen'
-import { PostScreen } from '../components/PostScreen'
+import { PostsScreen } from '../screens/PostsScreen'
+import { PostScreen } from '../screens/PostScreen'
 
 
 
@@ -11,7 +11,7 @@ export const RootNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Post" component={PostsScreen} />
-      <Stack.Screen name="Post Information" component={PostScreen} />
+      <Stack.Screen name="Details" component={PostScreen} />
     </Stack.Navigator>
  
   );
