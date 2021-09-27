@@ -1,20 +1,18 @@
 import * as React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
-import { PostsScreen } from '../screens/PostsScreen'
-import { PostScreen } from '../screens/PostScreen'
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { Gallery } from "../screens/Gallery";
+import { StackNavigator } from "./StackNavigator";
 
 
+const Tab = createMaterialBottomTabNavigator();
 
-const Stack = createStackNavigator();
+
 
 export const RootNavigator = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Post" component={PostsScreen} />
-      <Stack.Screen name="Details" component={PostScreen} />
-    </Stack.Navigator>
- 
+    <Tab.Navigator>
+      <Tab.Screen name="Posts" component={StackNavigator} />
+      <Tab.Screen name="Gallery" component={Gallery} />
+    </Tab.Navigator>
   );
 };
-
-

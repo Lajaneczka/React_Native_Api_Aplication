@@ -68,7 +68,6 @@ const styles = StyleSheet.create({
     padding: 5,
     borderBottomWidth: 1,
     borderBottomColor: "#afeeee",
-    backgroundColor: "#e0ffff",
   },
   nameItem: {
     padding: 5,

@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
   container: {
     borderBottomWidth: 1,
     borderBottomColor: "#afeeee",
-    backgroundColor: "#48d1cc",
   },
   title: {
     padding: 5,
