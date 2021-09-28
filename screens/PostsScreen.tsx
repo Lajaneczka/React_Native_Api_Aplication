@@ -3,8 +3,6 @@ import { useEffect, useState, useCallback } from "react";
 import { Text, FlatList, SafeAreaView } from "react-native";
 import { Posts } from "../components/Posts";
 
-
-
 export const PostsScreen = ({ navigation }) => {
   const [posts, setPosts] = useState([]);
 
