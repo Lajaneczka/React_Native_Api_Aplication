@@ -13,7 +13,7 @@ import {
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-export const Gallery = () => {
+export const GalleryScreen = () => {
   const [asset, setAsset] = useState<Asset[]>([]);
   const [columns, setColumns] = useState(2);
 
